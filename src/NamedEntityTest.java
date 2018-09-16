@@ -4,6 +4,7 @@ import opennlp.tools.util.Span;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NamedEntityTest {
@@ -47,10 +48,7 @@ public class NamedEntityTest {
     }
 
     private static String str(final String[] tokens, final Span span) {
-        final List<String> location = new ArrayList<>();
-        for (int i = span.getStart(); i < span.getEnd(); i++) {
-            location.add(tokens[i]);
-        }
+        final List<String> location = new ArrayList<>(Arrays.asList(tokens).subList(span.getStart(), span.getEnd()));
         return String.join(" ", location);
     }
 }
